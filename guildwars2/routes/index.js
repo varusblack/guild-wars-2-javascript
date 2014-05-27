@@ -68,8 +68,6 @@ module.exports = exports = function(app, db) {
 	app.get('/registro', function(req, res) {
 		return res.render('registro', {title: 'Registro guay'});
 	});
-	
-	
 	app.post('/registro', function(req, res, db) {
 		
 		var name = req.body.username;
@@ -134,7 +132,6 @@ module.exports = exports = function(app, db) {
 	app.get('/login', function(req, res) {
 		return res.render('login', { title: 'Login'});
 	});
-	
 	app.post('/login', function(req, res, db) {
 		var username = req.body.username;
 		var password = req.body.password;
@@ -175,6 +172,10 @@ module.exports = exports = function(app, db) {
 	
 	app.get('/main', function(req, res) {
 		return res.render('main', { title: 'Main'});
+	});
+	
+	app.get('/perfil', function(req, res){
+		return res.render('perfil', {title: 'Perfil', username: 'Nombre de usuario', email: 'Email', timezone: 'Zona horaria', alert_checkbox: 'Enviar alertas', alert_interval: 'Intervalo de alertas', events: 'Eventos suscritos'})
 	});
 	
 };

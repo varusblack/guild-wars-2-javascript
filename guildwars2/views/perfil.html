@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>{{title}}</title>
+</head>
+
+<body>
+	<form action="/perfil" method="post">
+		<div></div>
+		<div>
+			<label for="username">{{username}} </label>
+			<input type="text" id="username" name="username" value="{{username}}" disabled="disabled">
+		</div>
+		<div>
+			<label for="email">{{email}} </label>
+			<input type="email" id="email" name="email" value="{{email}}" disabled="disabled">
+		</div>
+		<div>
+			<span>{{timezone}} </span>
+			<select id="timezone" name="timezone">
+				<option value="UTC-12">UTC-12</option>
+				<option value="UTC-11">UTC-11</option>
+				<option value="UTC-10">UTC-10</option>
+				<option value="UTC-9">UTC-9</option>
+				<option value="UTC-8">UTC-8</option>
+				<option value="UTC-7">UTC-7</option>
+				<option value="UTC-6">UTC-6</option>
+				<option value="UTC-5">UTC-5</option>
+				<option value="UTC-4">UTC-4</option>
+				<option value="UTC-3">UTC-3</option>
+				<option value="UTC-2">UTC-2</option>
+				<option value="UTC-1">UTC-1</option>
+				<option value="UTC+0">UTC+0</option>
+				<option value="UTC+1">UTC+1</option>
+				<option value="UTC+2">UTC+2</option>
+				<option value="UTC+3">UTC+3</option>
+				<option value="UTC+4">UTC+4</option>
+				<option value="UTC+5">UTC+5</option>
+				<option value="UTC+6">UTC+6</option>
+				<option value="UTC+7">UTC+7</option>
+				<option value="UTC+8">UTC+8</option>
+				<option value="UTC+9">UTC+9</option>
+				<option value="UTC+10">UTC+10</option>
+				<option value="UTC+11">UTC+11</option>
+				<option value="UTC+12">UTC+12</option>
+			</select>
+		</div>
+		<div>
+			<label for="alert">{{alert_checkbox}}</label>
+			<input type="checkbox" id="alert" name="alert">
+		</div>		
+		<div>
+			<span>{{alert_interval}}</span>
+			<select id="alert_time" name="alert_time">
+				<option value="0">{{beginning}}</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+			</select>
+		</div>
+		<div>
+			<span>{{events}}</span>
+		</div>
+		
+	</form>
+</body>
+
+</html>
