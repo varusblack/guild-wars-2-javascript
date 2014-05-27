@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>{{title}}</title>
+</head>
+
+<body>
+	<h2>Ingresar</h2>
+	<form action="/login" method="post">
+		<div>
+			<div>
+				<label for="username">Nombre de usuario</label>
+				<input type="text" id="username" name="username">
+				<span class="error">{{username_error}}</span>
+			</div>
+			<div>
+				<label for="password">Contraseña</label>
+				<input type="password" id="password" name="password">
+				<span class="error">{{password_error}}</span>
+			</div>
+		</div>
+		<input type="submit">
+	</form>
+</body>
+
+</html>
