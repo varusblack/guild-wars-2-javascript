@@ -65,10 +65,10 @@ module.exports = exports = function(app, db) {
 		return res.render('index', { title: 'Express', culo : '' });
 	});
 	
-	app.get('/registro', function(req, res) {
-		return res.render('registro', {title: 'Registro guay'});
+	app.get('/registration', function(req, res) {
+		return res.render('registration', {title: 'Registro'});
 	});
-	app.post('/registro', function(req, res, db) {
+	app.post('/registration', function(req, res, db) {
 		
 		var name = req.body.username;
 		var password = req.body.password;
@@ -104,7 +104,7 @@ module.exports = exports = function(app, db) {
 		}
 		
 		if (hayErrores) {
-			return res.render('registro', {title: 'Registro guay', name : name, email: email, username_error: usernameError, password_error: passwordError, verify_error: verifyError, email_error: emailError});
+			return res.render('registration', {title: 'Registro', name : name, email: email, username_error: usernameError, password_error: passwordError, verify_error: verifyError, email_error: emailError});
 		} else {
 			var user = {name: name,
 						lang: "es", 
@@ -164,18 +164,15 @@ module.exports = exports = function(app, db) {
 	                return res.redirect('/main');
 				}
 			});
-			
-			
 		}
-		
 	});
 	
 	app.get('/main', function(req, res) {
 		return res.render('main', { title: 'Main'});
 	});
 	
-	app.get('/perfil', function(req, res){
-		return res.render('perfil', {title: 'Perfil', username: 'Nombre de usuario', email: 'Email', timezone: 'Zona horaria', alert_checkbox: 'Enviar alertas', alert_interval: 'Intervalo de alertas', events: 'Eventos suscritos'})
+	app.get('/profile', function(req, res){
+		return res.render('profile', {title: 'Perfil', username: 'Nombre de usuario', email: 'Email', timezone: 'Zona horaria', alert_checkbox: 'Enviar alertas', alert_interval: 'Intervalo de alertas', events: 'Eventos suscritos'})
 	});
 	
 };

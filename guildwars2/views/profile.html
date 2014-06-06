@@ -2,22 +2,22 @@
 
 <html>
 <head>
-	<title>{{title}}</title>
+	<title>Perfil</title>
 </head>
 
 <body>
-	<form action="/perfil" method="post">
+	<form action="/profile" method="post">
 		<div></div>
 		<div>
-			<label for="username">{{username}} </label>
+			<label for="username">Nombre de usuario </label>
 			<input type="text" id="username" name="username" value="{{username}}" disabled="disabled">
 		</div>
 		<div>
-			<label for="email">{{email}} </label>
+			<label for="email">Email </label>
 			<input type="email" id="email" name="email" value="{{email}}" disabled="disabled">
 		</div>
 		<div>
-			<span>{{timezone}} </span>
+			<span>Zona horaria </span>
 			<select id="timezone" name="timezone">
 				<option value="UTC-12">UTC-12</option>
 				<option value="UTC-11">UTC-11</option>
@@ -47,13 +47,13 @@
 			</select>
 		</div>
 		<div>
-			<label for="alert">{{alert_checkbox}}</label>
+			<label for="alert">Alertas activadas</label>
 			<input type="checkbox" id="alert" name="alert">
 		</div>		
 		<div>
-			<span>{{alert_interval}}</span>
+			<span>Tiempo de aviso</span>
 			<select id="alert_time" name="alert_time">
-				<option value="0">{{beginning}}</option>
+				<option value="0">Al empezar</option>
 				<option value="10">10</option>
 				<option value="15">15</option>
 				<option value="20">20</option>
