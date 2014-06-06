@@ -97,8 +97,8 @@ function SessionHandler(db) {
 	
 	this.handleRegistration = function(req, res, next) {
 		
-		var email = req.body.email;
 		var username = req.body.username;
+		var email = req.body.email;
 		var password = req.body.password;
 		var passwordVerify = req.body.verify_password;
 		var timezone = req.body.timezone;
@@ -162,8 +162,27 @@ function SessionHandler(db) {
 											'alert' : user['enable_alerts'],
 											'alert_time' : user['time_alert']});
 		});
-		
 	};
 	
-	
+	this.handleProfileUpdate = function(req, res, next) {
+		var username = req.body.username;
+		var email = req.body.email;
+		var timezone = req.body.timezone;
+		var enableAlerts = req.body.alert.checked;
+		var timeAlert = req.body.alert_time;
+		
+		users.updateUser(username, email, timezone, enableAlerts, timeAlert, function(err, result){
+			if (err) {
+				console.log("Error al actualizar datos usuario.");
+				res.redirect('/error');
+			}
+			return res.render("profile", {'username' : user['_id'],
+				'email' : user['email'],
+				'timezone' : user['timezone'],
+				'alert' : user['enable_alerts'],
+				'alert_time' : user['time_alert']}); 
+		});
+	}
 }
+
+module.exports = SessionHandler;
