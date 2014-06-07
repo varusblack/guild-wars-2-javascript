@@ -101,14 +101,16 @@ function SessionHandler(db) {
 		var email = req.body.email;
 		var password = req.body.password;
 		var passwordVerify = req.body.verify_password;
-		var timezone = req.body.timezone;
-		var enableAlerts = req.body.alert.checked;
+		var enableAlerts = false;
+		if (req.body.alert_enabled != undefined) {
+			enableAlerts = true;
+		}
 		var timeAlert = req.body.alert_time;
 		
 		var errors = {'username' : username, 'email' : email};
 		
 		if (validateRegistration(username, password, passwordVerify, email, errors)) {
-			users.addUser(username, password, email, timezone, enableAlerts, timeAlert, function(err, user){
+			users.addUser(username, password, email, enableAlerts, timeAlert, function(err, user){
 				
 				if (err) {
 					// Nombre de usuario repetido
@@ -151,15 +153,14 @@ function SessionHandler(db) {
 			res.redirect("/login");
 		}
 		
-		users.getUser(username, function(err, user){
+		users.getUser(req.username, function(err, user){
 			if (err) {
 				console.log("Error al obtener el usuario.");
 				res.redirect('/error');
 			}
 			return res.render("profile", {'username' : user['_id'],
 											'email' : user['email'],
-											'timezone' : user['timezone'],
-											'alert' : user['enable_alerts'],
+											'alert_enabled' : user['enable_alerts'],
 											'alert_time' : user['time_alert']});
 		});
 	};
@@ -167,19 +168,20 @@ function SessionHandler(db) {
 	this.handleProfileUpdate = function(req, res, next) {
 		var username = req.body.username;
 		var email = req.body.email;
-		var timezone = req.body.timezone;
-		var enableAlerts = req.body.alert.checked;
+		var enableAlerts = false;
+		if (req.body.alert_enabled != undefined) {
+			enableAlerts = true;
+		}
 		var timeAlert = req.body.alert_time;
 		
-		users.updateUser(username, email, timezone, enableAlerts, timeAlert, function(err, result){
+		users.updateUser(username, email, enableAlerts, timeAlert, function(err, user){
 			if (err) {
 				console.log("Error al actualizar datos usuario.");
 				res.redirect('/error');
 			}
 			return res.render("profile", {'username' : user['_id'],
 				'email' : user['email'],
-				'timezone' : user['timezone'],
-				'alert' : user['enable_alerts'],
+				'alert_enabled' : user['enable_alerts'],
 				'alert_time' : user['time_alert']}); 
 		});
 	}

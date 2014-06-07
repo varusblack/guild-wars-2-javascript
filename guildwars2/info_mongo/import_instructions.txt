@@ -1,0 +1,1 @@
+Execute--> c:\mongodb\bin\mongoimport --db mydb --collection event --jsonArray c:\events.json
