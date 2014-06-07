@@ -1,7 +1,7 @@
 /**
  * Manejador de operaciones con sesiones frente a Mongo
  */
-var crypto = require('bcrypt-nodejs');
+var crypto = require('crypto');
 
 function SessionDAO(db) {
 	

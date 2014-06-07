@@ -15,7 +15,7 @@ function UserDAO(db) {
 	
 	var users = db.collection("user");
 	
-	this.addUser = function(username, password, email, timezone, enableAlerts, timeAlert, callback) {
+	this.addUser = function(username, password, email, enableAlerts, timeAlert, callback) {
 		
 		// Encriptación del password
 		var salt = bcrypt.genSaltSync();
@@ -25,7 +25,6 @@ function UserDAO(db) {
 		var user = {'_id' : username,
 					'password' : passwordHash,
 					'email' : email,
-					'timezone' : timezone,
 					'enable_alerts' : enableAlerts,
 					'time_alert' : timeAlert};
 		
@@ -79,12 +78,11 @@ function UserDAO(db) {
 		users.findOne({'_id' : username}, validateUser);
 	};
 	
-	this.updateUser = function(username, email, timezone, enableAlerts, timeAlert, callback) {
+	this.updateUser = function(username, email, enableAlerts, timeAlert, callback) {
 		users.update(
 				{username : username},
 				{$set :
 					{email : email,
-					timezone : timezone,
 					enable_alerts : enableAlerts,
 					time_alert : timeAlert}
 				}, function(err, result) {

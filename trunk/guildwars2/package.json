@@ -6,7 +6,6 @@
 		"start": "node app.js"
 	},
 	"dependencies": {
-		"jade": "*",
     	"consolidate": "~0.9.1",
     	"crypto": "~0.0.3",
     	"express": "~3.3.4",
