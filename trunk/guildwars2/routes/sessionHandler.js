@@ -1,10 +1,23 @@
 var UserDAO = require('../userDAO').UserDAO,
-	SessionDAO = require('../sessionDAO').SessionDAO;
+	SessionDAO = require('../sessionDAO').SessionDAO,
+	EventDAO = require('../eventDAO').EventDAO;
 
 function SessionHandler(db) {
 	
 	var users = new UserDAO(db);
 	var sessions = new SessionDAO(db);
+	var events = new EventDAO(db);
+	
+	this.isLogged = function(req, res, next) {
+        var session_id = req.cookies.session;
+        sessions.getUsername(session_id, function(err, username) {
+
+            if (!err && username) {
+                req.username = username;
+            }
+            return next();
+        });
+    };
 	
 	this.displayLoginPage = function(req, res, next) {
 		return res.render("login", {username : "", password : "", loginError : ""});
@@ -36,7 +49,8 @@ function SessionHandler(db) {
 				}
 				
 				res.cookie('session', session_id);
-				return res.redirect('/main');
+//				return res.redirect('/main');
+				return res.render("main",{'user' : user});
 				
 			});
 			
@@ -45,7 +59,7 @@ function SessionHandler(db) {
 	};
 	
 	this.displayLogoutPage = function(req, res, next) {
-		var session_id = req.cookie.session;
+		var session_id = req.cookies.session;
 		sessions.endSession(session_id, function(err){
 			res.cookie('session', '');
 			return res.redirect('/');
@@ -82,7 +96,7 @@ function SessionHandler(db) {
         	errors['password_error'] = "Contraseña inválida.";
             return false;
         }
-        if (password != passwordVerify) {
+        if (password !== passwordVerify) {
             errors['verify_error'] = "Las contraseñas deben coincidir.";
             return false;
         }
@@ -102,7 +116,7 @@ function SessionHandler(db) {
 		var password = req.body.password;
 		var passwordVerify = req.body.verify_password;
 		var enableAlerts = false;
-		if (req.body.alert_enabled != undefined) {
+		if (req.body.alert_enabled !== undefined) {
 			enableAlerts = true;
 		}
 		var timeAlert = req.body.alert_time;
@@ -129,7 +143,8 @@ function SessionHandler(db) {
 					}
 					
 					res.cookie('session', session_id);
-					return res.redirect('/main');
+//					return res.redirect('/main');
+					return res.render("main",{'user' : user});
 				});
 			});
 		} else {
@@ -142,26 +157,33 @@ function SessionHandler(db) {
 		if (!req.username) {
 			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
 			res.redirect("/login");
-		}
-		
-		return res.render("main", {'username' : req.username});
-	};
-	
-	this.displayProfilePage = function(req, res, next) {
-		if (!req.username) {
-			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
-			res.redirect("/login");
+			return;
 		}
 		
 		users.getUser(req.username, function(err, user){
 			if (err) {
 				console.log("Error al obtener el usuario.");
 				res.redirect('/error');
+				return;
 			}
-			return res.render("profile", {'username' : user['_id'],
-											'email' : user['email'],
-											'alert_enabled' : user['enable_alerts'],
-											'alert_time' : user['time_alert']});
+			return res.render("main", {'user' : user});
+		});
+	};
+	
+	this.displayProfilePage = function(req, res, next) {
+		if (!req.username) {
+			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
+			res.redirect("/login");
+			return;
+		}
+		
+		users.getUser(req.username, function(err, user){
+			if (err) {
+				console.log("Error al obtener el usuario.");
+				res.redirect('/error');
+				return;
+			}
+			return res.render("profile", {'user' : user});
 		});
 	};
 	
@@ -169,7 +191,7 @@ function SessionHandler(db) {
 		var username = req.body.username;
 		var email = req.body.email;
 		var enableAlerts = false;
-		if (req.body.alert_enabled != undefined) {
+		if (req.body.alert_enabled !== undefined) {
 			enableAlerts = true;
 		}
 		var timeAlert = req.body.alert_time;
@@ -178,13 +200,11 @@ function SessionHandler(db) {
 			if (err) {
 				console.log("Error al actualizar datos usuario.");
 				res.redirect('/error');
+				return;
 			}
-			return res.render("profile", {'username' : user['_id'],
-				'email' : user['email'],
-				'alert_enabled' : user['enable_alerts'],
-				'alert_time' : user['time_alert']}); 
+			return res.render("profile", {'user' : user}); 
 		});
-	}
+	};
 }
 
 module.exports = SessionHandler;

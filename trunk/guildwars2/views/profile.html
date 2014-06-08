@@ -10,29 +10,23 @@
 		<div></div>
 		<div>
 			<label for="username">Nombre de usuario </label>
-			<input type="text" id="username" name="username" value="{{username}}" disabled="disabled">
+			<input type="text" id="username" name="username" value="{{user['_id']}}" readonly="readonly">
 		</div>
 		<div>
 			<label for="email">Email </label>
-			<input type="email" id="email" name="email" value="{{email}}">
+			<input type="email" id="email" name="email" value="{{user['email']}}">
 		</div>
 		<div>
 			<label for="alert_enabled">Alertas activadas</label>
-			<input type="checkbox" id="alert_enabled" name="alert_enabled">
+			<input type="checkbox" id="alert_enabled" name="alert_enabled" {% if user.enable_alerts == true %}checked="checked"{% endif %}>
 		</div>		
 		<div>
 			<span>Tiempo de aviso</span>
 			<select id="alert_time" name="alert_time">
-				<option value="0">Al empezar</option>
-				<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="20">20</option>
-				<option value="25">25</option>
-				<option value="30">30</option>
+				<option value="0" {% if user.time_alert == "0" %}selected="selected"{% endif %}>Al empezar</option>
+				<option value="5" {% if user.time_alert == "5" %}selected="selected"{% endif %}>5 min antes</option>
+				<option value="10" {% if user.time_alert == "10" %}selected="selected"{% endif %}>10 min antes</option>
 			</select>
-		</div>
-		<div>
-			<span>{{events}}</span>
 		</div>
 		
 		<input type="submit">
