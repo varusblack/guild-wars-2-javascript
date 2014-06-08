@@ -79,16 +79,19 @@ function UserDAO(db) {
 	};
 	
 	this.updateUser = function(username, email, enableAlerts, timeAlert, callback) {
-		users.update(
-				{username : username},
+		users.findAndModify(
+				{_id : username},
+				[],
 				{$set :
 					{email : email,
 					enable_alerts : enableAlerts,
 					time_alert : timeAlert}
-				}, function(err, result) {
+				},
+				{},
+				function(err, user) {
 					if (!err) {
 						console.log("Usuario " + username + " editado con exito");
-						return callback(null, result[0]);
+						return callback(null, user);
 					}
 					
 					return callback(err, null);

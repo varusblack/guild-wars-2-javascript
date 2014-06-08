@@ -43,7 +43,7 @@ function SessionDAO(db) {
 	this.getUsername = function(session_id, callback) {
 		
 		if (!session_id) {
-			return callback(Error("No hay sesión establecida"), null);
+			return callback(new Error("No hay sesión establecida"), null);
         }
 		
 		sessions.findOne({'_id' : session_id}, function(err, session){

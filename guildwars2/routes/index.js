@@ -6,6 +6,9 @@ module.exports = exports = function(app, db) {
 	
 	var sessionHandler = new SessionHandler(db);
 
+	//Comprobar si el usuario ha iniciado sesión
+	app.use(sessionHandler.isLogged);
+	
 	// Página de entrada
 	app.get('/', function(req, res) {
 		return res.render('index', { title: 'Express', culo : '' });
@@ -24,12 +27,11 @@ module.exports = exports = function(app, db) {
 	app.post('/profile', sessionHandler.handleProfileUpdate);
 	
 	// Página principal
-	app.get('/main', function(req, res) {
-		return res.render('main', { title: 'Main'});
-	});
+	app.get('/main', sessionHandler.displayMainPage);
 	
 	// Errores
 	app.use(ErrorHandler);
+//	app.get('/error', )
 	
 	// Logout
 	app.get('/logout', sessionHandler.displayLogoutPage);
