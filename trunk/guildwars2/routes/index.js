@@ -1,10 +1,12 @@
 var SessionHandler = require('./sessionHandler'),
-	ErrorHandler = require('./errorHandler').errorHandler;
+	ErrorHandler = require('./errorHandler').errorHandler,
+	EventHandler = require('./eventHandler');
 	
 
 module.exports = exports = function(app, db) {
 	
 	var sessionHandler = new SessionHandler(db);
+	var eventHandler = new EventHandler(db);
 
 	//Comprobar si el usuario ha iniciado sesión
 	app.use(sessionHandler.isLogged);
@@ -27,7 +29,9 @@ module.exports = exports = function(app, db) {
 	app.post('/profile', sessionHandler.handleProfileUpdate);
 	
 	// Página principal
-	app.get('/main', sessionHandler.displayMainPage);
+//	app.get('/main', sessionHandler.displayMainPage);
+	app.get('/main', eventHandler.displayMainPage);
+	app.post('/main',eventHandler.subscribeToEvents);
 	
 	// Errores
 	app.use(ErrorHandler);
@@ -38,5 +42,3 @@ module.exports = exports = function(app, db) {
 	
 	
 };
-
-

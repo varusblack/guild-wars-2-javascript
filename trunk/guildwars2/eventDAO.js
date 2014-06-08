@@ -13,7 +13,7 @@ function EventDAO(db) {
 	var events = db.collection("event");
 	
 	this.getEvents = function(callback) {
-		events.find(function(err, results){
+		events.find().toArray(function(err, results){
 			if (err) {
 				return callback(err, null);
 			}
