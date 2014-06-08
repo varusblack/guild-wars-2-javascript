@@ -29,7 +29,6 @@ function SessionHandler(db) {
 		var password = req.body.password;
 		
 		console.log("Iniciando sesión --> username: " + username + ", password: " + password);
-		
 		users.validateLogin(username, password, function(err, user){
 			
 			if (err) {
@@ -51,11 +50,8 @@ function SessionHandler(db) {
 				res.cookie('session', session_id);
 //				return res.redirect('/main');
 				return res.render("main",{'user' : user});
-				
 			});
-			
 		});
-		
 	};
 	
 	this.displayLogoutPage = function(req, res, next) {
@@ -106,7 +102,6 @@ function SessionHandler(db) {
         }
         
         return true;
-        
 	}
 	
 	this.handleRegistration = function(req, res, next) {
@@ -153,22 +148,22 @@ function SessionHandler(db) {
 		}
 	};
 	
-	this.displayMainPage = function(req, res, next) {
-		if (!req.username) {
-			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
-			res.redirect("/login");
-			return;
-		}
-		
-		users.getUser(req.username, function(err, user){
-			if (err) {
-				console.log("Error al obtener el usuario.");
-				res.redirect('/error');
-				return;
-			}
-			return res.render("main", {'user' : user});
-		});
-	};
+//	this.displayMainPage = function(req, res, next) {
+//		if (!req.username) {
+//			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
+//			res.redirect("/login");
+//			return;
+//		}
+//		
+//		users.getUser(req.username, function(err, user){
+//			if (err) {
+//				console.log("Error al obtener el usuario.");
+//				res.redirect('/error');
+//				return;
+//			}
+//			return res.render("main", {'user' : user});
+//		});
+//	};
 	
 	this.displayProfilePage = function(req, res, next) {
 		if (!req.username) {

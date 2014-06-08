@@ -7,30 +7,44 @@
 
 <body>
 	<div class="top_bar">
-		<span>Hola {{user['_id']}}</span> 
+		<span class="welcome">Bienvenido {{user['_id']}}</span> 
 		<a class="top_bar_link" href="/profile">Perfil</a>
 		<a class="top_bar_link" href="/logout">Cerrar sesión</a>
 	</div>
 
 	<div class="dynamic_events">
-		<div class="finished_event">
-		</div>
-		
-		<div class="current_event">
-		</div>
-		
-		<div class="incoming_event">
-		</div>
-	</div>
-	
-	<div class="event_list">
-		
+		<div class="finished_event"></div>
+
+		<div class="current_event"></div>
+
+		<div class="incoming_event"></div>
 	</div>
 
+	<div class="event_list">
+		<form action="/main" method="post">
+			{% for event in events %}
+			<div class="event" id="{{event['_id']}}">
+				<span class="event_title">{{event['name']}}</span> 
+				<span class="event_waypoint">{{event['waypoint']}}</span>
+				<div class="event_times">
+				{% for time in event['time'] %}
+					<div class="event_time">
+						<label for="{{event['_id']}}_{{time}}">{{time}}</label>
+						<input type="checkbox" id="{{event['_id']}}_{{time}}" name="{{event['_id']}}_time" value="{{time}}">
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+			{% endfor %} 
+			<input type="submit" title="Suscribirse">
+		</form>
+	</div>
+
+
 </body>
-<footer> 
-	<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
-	<span>Autor: Álvaro Tristancho</span>
+<footer>
+	<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span> <span>Autor:
+		Álvaro Tristancho</span>
 </footer>
 
 </html>
