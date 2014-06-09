@@ -30,7 +30,8 @@
 				{% for time in event['time'] %}
 					<div class="event_time">
 						<label for="{{event['_id']}}_{{time}}">{{time}}</label>
-						<input type="checkbox" id="{{event['_id']}}_{{time}}" name="{{event['_id']}}_time" value="{{time}}">
+						<input type="checkbox" id="{{event['_id']}}_{{time}}" name="{{event['_id']}}_time" 
+							value="{{time}}" {% if user['events'] %}{% endinf %}>
 					</div>
 				{% endfor %}
 				</div>

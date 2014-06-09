@@ -4,13 +4,13 @@ var UserDAO = require('../userDAO').UserDAO,
 
 function SessionHandler(db) {
 	
-	var users = new UserDAO(db);
-	var sessions = new SessionDAO(db);
-	var events = new EventDAO(db);
+	var userDAO = new UserDAO(db);
+	var sessionDAO = new SessionDAO(db);
+	var eventDAO = new EventDAO(db);
 	
 	this.isLogged = function(req, res, next) {
         var session_id = req.cookies.session;
-        sessions.getUsername(session_id, function(err, username) {
+        sessionDAO.getUsername(session_id, function(err, username) {
 
             if (!err && username) {
                 req.username = username;
@@ -29,7 +29,7 @@ function SessionHandler(db) {
 		var password = req.body.password;
 		
 		console.log("Iniciando sesión --> username: " + username + ", password: " + password);
-		users.validateLogin(username, password, function(err, user){
+		userDAO.validateLogin(username, password, function(err, user){
 			
 			if (err) {
 				if (err.invalidPassword) {
@@ -41,7 +41,7 @@ function SessionHandler(db) {
 				}
 			}
 			
-			sessions.startSession(user['_id'], function(err, session_id){
+			sessionDAO.startSession(user['_id'], function(err, session_id){
 				
 				if (err) {
 					return next(err);
@@ -56,7 +56,7 @@ function SessionHandler(db) {
 	
 	this.displayLogoutPage = function(req, res, next) {
 		var session_id = req.cookies.session;
-		sessions.endSession(session_id, function(err){
+		sessionDAO.endSession(session_id, function(err){
 			res.cookie('session', '');
 			return res.redirect('/');
 		});
@@ -119,7 +119,7 @@ function SessionHandler(db) {
 		var errors = {'username' : username, 'email' : email};
 		
 		if (validateRegistration(username, password, passwordVerify, email, errors)) {
-			users.addUser(username, password, email, enableAlerts, timeAlert, function(err, user){
+			userDAO.addUser(username, password, email, enableAlerts, timeAlert, function(err, user){
 				
 				if (err) {
 					// Nombre de usuario repetido
@@ -132,7 +132,7 @@ function SessionHandler(db) {
 					}
 				}
 				
-				sessions.startSession(user['_id'], function(err, session_id){
+				sessionDAO.startSession(user['_id'], function(err, session_id){
 					if (err) {
 						return next(err);
 					}
@@ -172,7 +172,7 @@ function SessionHandler(db) {
 			return;
 		}
 		
-		users.getUser(req.username, function(err, user){
+		userDAO.getUser(req.username, function(err, user){
 			if (err) {
 				console.log("Error al obtener el usuario.");
 				res.redirect('/error');
@@ -191,7 +191,7 @@ function SessionHandler(db) {
 		}
 		var timeAlert = req.body.alert_time;
 		
-		users.updateUser(username, email, enableAlerts, timeAlert, function(err, user){
+		userDAO.updateUser(username, email, enableAlerts, timeAlert, function(err, user){
 			if (err) {
 				console.log("Error al actualizar datos usuario.");
 				res.redirect('/error');

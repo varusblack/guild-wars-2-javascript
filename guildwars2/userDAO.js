@@ -26,7 +26,8 @@ function UserDAO(db) {
 					'password' : passwordHash,
 					'email' : email,
 					'enable_alerts' : enableAlerts,
-					'time_alert' : timeAlert};
+					'time_alert' : timeAlert,
+					'events' : []};
 		
 		users.insert(user, function (err, result){
 			
@@ -80,22 +81,20 @@ function UserDAO(db) {
 	
 	this.updateUser = function(username, email, enableAlerts, timeAlert, callback) {
 		users.findAndModify(
-				{_id : username},
-				[],
-				{$set :
-					{email : email,
-					enable_alerts : enableAlerts,
-					time_alert : timeAlert}
-				},
-				{},
-				function(err, user) {
-					if (!err) {
-						console.log("Usuario " + username + " editado con exito");
-						return callback(null, user);
-					}
-					
-					return callback(err, null);
+			{_id : username}, [],
+			{$set :
+				{email : email,
+				enable_alerts : enableAlerts,
+				time_alert : timeAlert}
+			}, {},
+			function(err, user) {
+				if (!err) {
+					console.log("Usuario " + username + " editado con exito");
+					return callback(null, user);
 				}
+				
+				return callback(err, null);
+			}
 		);
 	};
 	
@@ -107,6 +106,23 @@ function UserDAO(db) {
 			
 			return callback(null,user);
 		});
+	};
+	
+	this.subscribeEvents = function(username, events, callback) {
+		users.findAndModify(
+			{_id : username}, [],
+			{$set :
+				{events : events}
+			}, {},
+			function(err, user) {
+				if (!err) {
+					console.log("Eventos del usuario " + username + " modificados correctamente");
+					return callback(null, user);
+				}
+				
+				return callback(err, null);
+			}
+		);
 	};
 }
 
