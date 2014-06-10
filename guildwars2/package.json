@@ -12,6 +12,7 @@
     	"mongodb": "*",
     	"swig": "~0.14.0",
     	"bcrypt-nodejs": "~0.0.3",
-    	"cron" : "*"
+    	"cron" : "*",
+    	"nodemailer" : "*"
 	}
 }
