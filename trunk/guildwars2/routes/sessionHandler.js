@@ -48,8 +48,8 @@ function SessionHandler(db) {
 				}
 				
 				res.cookie('session', session_id);
-//				return res.redirect('/main');
-				return res.render("main",{'user' : user});
+				return res.redirect('/main');
+//				return res.render("main",{'user' : user});
 			});
 		});
 	};
@@ -138,8 +138,8 @@ function SessionHandler(db) {
 					}
 					
 					res.cookie('session', session_id);
-//					return res.redirect('/main');
-					return res.render("main",{'user' : user});
+					return res.redirect('/main');
+//					return res.render("main",{'user' : user});
 				});
 			});
 		} else {
@@ -148,35 +148,16 @@ function SessionHandler(db) {
 		}
 	};
 	
-//	this.displayMainPage = function(req, res, next) {
-//		if (!req.username) {
-//			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
-//			res.redirect("/login");
-//			return;
-//		}
-//		
-//		users.getUser(req.username, function(err, user){
-//			if (err) {
-//				console.log("Error al obtener el usuario.");
-//				res.redirect('/error');
-//				return;
-//			}
-//			return res.render("main", {'user' : user});
-//		});
-//	};
-	
 	this.displayProfilePage = function(req, res, next) {
 		if (!req.username) {
 			console.log("No se puede identificar al usuario. Redirigiendo a pantalla de login.");
-			res.redirect("/login");
-			return;
+			return res.redirect("/login");
 		}
 		
 		userDAO.getUser(req.username, function(err, user){
 			if (err) {
 				console.log("Error al obtener el usuario.");
-				res.redirect('/error');
-				return;
+				return res.redirect('/error');
 			}
 			return res.render("profile", {'user' : user});
 		});
@@ -194,10 +175,9 @@ function SessionHandler(db) {
 		userDAO.updateUser(username, email, enableAlerts, timeAlert, function(err, user){
 			if (err) {
 				console.log("Error al actualizar datos usuario.");
-				res.redirect('/error');
-				return;
+				return res.redirect('/error');
 			}
-			return res.render("profile", {'user' : user}); 
+			return res.redirect('/profile'); 
 		});
 	};
 }

@@ -22,7 +22,7 @@ function EventDAO(db) {
 	};
 	
 	this.getEventByTime = function(time, callback) {
-		events.findOne({'time' : time}, function(err, event){
+		events.findOne({'time' : {$in : [time]}}, function(err, event){
 			if (err) {
 				return callback(err, null);
 			}

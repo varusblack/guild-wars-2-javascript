@@ -2,12 +2,14 @@
  * New node file
  */
 var UserDAO = require('../userDAO').UserDAO,
-	EventDAO = require('../eventDAO').EventDAO;
+	EventDAO = require('../eventDAO').EventDAO,
+	EmailSender = require('../emailSender').EmailSender;
 
 function EventHandler(db) {
 	
 	var userDAO = new UserDAO(db);
 	var eventDAO = new EventDAO(db);
+	var emailSender = new EmailSender();
 	
 	this.displayMainPage = function(req, res, next) {
 		if (!req.username) {
@@ -28,8 +30,6 @@ function EventHandler(db) {
 				
 				return res.render("main", {'user' : user, 'events' : events});
 			});
-			
-//			return res.render("main", {'user' : user});
 		});
 	};
 	
@@ -178,17 +178,147 @@ function EventHandler(db) {
 					return res.redirect('/error');
 				}
 				
-				return res.render("main", {'user' : user, 'events' : events});
+				return res.redirect('/main');
 			});
 		});
 		
 	};
 	
 	this.updateEvents = function(req, res, next){
-		
+		var date = new Date();
+		var time = date.getHours() + ":" + date.getMinutes();
+		console.log("Evento que saca la hora: " + time);
+		emailSender.testSendEmail();
+//		return res.redirect('/');
 		
 	};
 	
+	this.checkEventAlerts = function(req, res, next){
+		var date = new Date();
+		var minutes = date.getMinutes();
+		// Tiempo con antelación 0
+		var timeZero = "";
+		if (minutes.toString().length === "1") {
+			timeZero = date.getHours() + ":0" + minutes;
+		} else {
+			timeZero = date.getHours() + ":" + minutes;
+		}
+		// Tiempo con antelación 5
+		var timeFive = date.getHours() + ":" + (minutes + 5);
+		// Tiempo con antelación 10
+		var timeTen = date.getHours() + ":" + (minutes + 10);
+		
+		// ANTELACIÓN : 0
+		// Obtener evento por hora
+		eventDAO.getEventByTime(timeZero, function(err, event){
+			if (err) {
+				console.log("Error al obtener evento.");
+//				return res.redirect('/error');
+			}
+			if (event !== null) {
+				// Obtener usuarios suscritos al evento
+				userDAO.getUsersByEvent("true", 0, event, function(errU, users){
+					if (errU) {
+						console.log("Error al obtener usuarios.");
+						console.log(errU);
+//					return res.redirect('/error');
+					}
+					if (users !== null && users.length > 0) {
+						// Recorrer todos los usuarios suscritos
+						for(var i = 0 ; i < users.length ; i++) {
+							var subscribedUser = users[i];
+							// Recorrer todos los eventos del usuario
+							for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
+								var userEvent = subscribedUser.events[iE];
+								// Si el evento coincide y está suscrito a esa hora
+								if (userEvent['name'] === event['_id']) {
+									if(userEvent['time'].indexOf(timeZero) !== -1) {
+										// Enviar email
+										emailSender.sendEmail(subscribedUser, event, timeZero);
+										break;
+									}
+								}
+							}
+						}
+					} 
+				});
+				
+			}
+			// ANTELACIÓN : 5
+			// Obtener evento por hora
+			eventDAO.getEventByTime(timeFive, function(err, event){
+				if (err) {
+					console.log("Error al obtener evento.");
+//				return res.redirect('/error');
+				}
+				if (event !== null) {
+					// Obtener usuarios suscritos al evento
+					userDAO.getUsersByEvent(true, 5, event, function(errU, users){
+						if (errU) {
+							console.log("Error al obtener usuarios.");
+							console.log(errU);
+//					return res.redirect('/error');
+						}
+						if (users !== null && users.length > 0) {
+							// Recorrer todos los usuarios suscritos
+							for(var i = 0 ; i < users.length ; i++) {
+								var subscribedUser = users[i];
+								// Recorrer todos los eventos del usuario
+								for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
+									var userEvent = subscribedUser.events[iE];
+									// Si el evento coincide y está suscrito a esa hora
+									if (userEvent['name'] === event['_id']) {
+										if(userEvent['time'].indexOf(timeFive) !== -1) {
+											// Enviar email
+											emailSender.sendEmail(subscribedUser, event, timeFive);
+											break;
+										}
+									}
+								}
+							}
+						} 
+					});
+				}
+				// ANTELACIÓN : 10
+				// Obtener evento por hora
+				eventDAO.getEventByTime(timeTen, function(err, event){
+					if (err) {
+						console.log("Error al obtener evento.");
+//				return res.redirect('/error');
+					}
+					if (event !== null) {
+						// Obtener usuarios suscritos al evento
+						userDAO.getUsersByEvent(true, 10, event, function(errU, users){
+							if (errU) {
+								console.log("Error al obtener usuarios.");
+								console.log(errU);
+//					return res.redirect('/error');
+							}
+							if (users !== null && users.length > 0) {
+								// Recorrer todos los usuarios suscritos
+								for(var i = 0 ; i < users.length ; i++) {
+									var subscribedUser = users[i];
+									// Recorrer todos los eventos del usuario
+									for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
+										var userEvent = subscribedUser.events[iE];
+										// Si el evento coincide y está suscrito a esa hora
+										if (userEvent['name'] === event['_id']) {
+											if(userEvent['time'].indexOf(timeTen) !== -1) {
+												// Enviar email
+												emailSender.sendEmail(subscribedUser, event, timeTen);
+												break;
+											}
+										}
+									}
+								}
+							} 
+						});
+						
+					}
+				});
+			});
+		});
+	};
 }
 
 module.exports = EventHandler;
