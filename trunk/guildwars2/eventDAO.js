@@ -30,6 +30,15 @@ function EventDAO(db) {
 		});
 	};
 	
+	this.getEventById = function(eventId, callback) {
+		events.findOne({'_id' : eventId}, function(err, event){
+			if (err) {
+				return callback(err, null);
+			}
+			return callback(null, event);
+		});
+	};
+	
 }
 
 module.exports.EventDAO = EventDAO;

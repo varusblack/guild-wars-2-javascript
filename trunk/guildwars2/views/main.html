@@ -33,7 +33,7 @@
 						<input type="checkbox" id="{{event['_id']}}_{{time}}" 
 						name="{{event['_id']}}_time" value="{{time}}"
 						{% for user_event in user['events'] %}
-						{% if (event['_id'] == user_event['name']) && (time in user_event['time']) %}
+						{% if (event['_id'] == user_event['_id']) && (time in user_event['time']) %}
 						checked="checked"
 						{% endif %}
 						{% endfor %}
