@@ -125,16 +125,16 @@ function UserDAO(db) {
 		);
 	};
 	
-	this.getUsersByEvent = function(enableAlert, alertTime, event, callback) {
-		
-		users.find({'enable_alerts' : enableAlert,'time_alert' : alertTime, 'events.name' : {$in : [event['_id']]}}).toArray(function(err, result){
-			if (!err) {
-				console.log("Usuarios suscritos al evento " + event['_id'] + " listados correctamente");
-				return callback(null, result);
-			}
-			return callback(err, null);
-		});
-	};
+//	this.getUsersByEvent = function(enableAlert, alertTime, event, callback) {
+//		
+//		users.find({'enable_alerts' : enableAlert,'time_alert' : alertTime, 'events.name' : {$in : [event['_id']]}}).toArray(function(err, result){
+//			if (!err) {
+//				console.log("Usuarios suscritos al evento " + event['_id'] + " listados correctamente");
+//				return callback(null, result);
+//			}
+//			return callback(err, null);
+//		});
+//	};
 	
 	this.getUsers = function(callback) {
 		users.find().toArray(function(err, result){

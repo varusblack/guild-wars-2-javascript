@@ -38,7 +38,6 @@ function EventDAO(db) {
 			return callback(null, event);
 		});
 	};
-	
 }
 
 module.exports.EventDAO = EventDAO;
