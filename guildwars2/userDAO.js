@@ -135,6 +135,16 @@ function UserDAO(db) {
 			return callback(err, null);
 		});
 	};
+	
+	this.getUsers = function(callback) {
+		users.find().toArray(function(err, result){
+			if (!err) {
+				console.log("Usuarios obtenidos correctamente")
+				return callback(null, result);
+			}
+			return callback(err, null);
+		});
+	};
 }
 
 module.exports.UserDAO = UserDAO;

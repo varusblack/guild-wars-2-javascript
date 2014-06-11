@@ -54,7 +54,7 @@ function EventHandler(db) {
 			if(typeof megadestructorEvent === 'string') {
 				megadestructorEvent = [megadestructorEvent];
 			}
-			var megadestructor = {"name" : "megadestructor"};
+			var megadestructor = {"_id" : "megadestructor"};
 			megadestructor["time"] = megadestructorEvent;
 			userEvents.push(megadestructor);
 		}
@@ -63,7 +63,7 @@ function EventHandler(db) {
 			if(typeof sierpeEvent === 'string') {
 				sierpeEvent = [sierpeEvent];
 			}
-			var sierpe = {"name" : "sierpe"};
+			var sierpe = {"_id" : "sierpe"};
 			sierpe["time"] = sierpeEvent;
 			userEvents.push(sierpe);
 		}
@@ -72,7 +72,7 @@ function EventHandler(db) {
 			if(typeof behemotEvent === 'string') {
 				behemotEvent = [behemotEvent];
 			}
-			var behemot = {"name" : "behemot"};
+			var behemot = {"_id" : "behemot"};
 			behemot["time"] = behemotEvent;
 			userEvents.push(behemot);
 		}
@@ -81,7 +81,7 @@ function EventHandler(db) {
 			if(typeof asoladorEvent === 'string') {
 				asoladorEvent = [asoladorEvent];
 			}
-			var asolador = {"name" : "asolador"};
+			var asolador = {"_id" : "asolador"};
 			asolador["time"] = asoladorEvent;
 			userEvents.push(asolador);
 		}
@@ -90,7 +90,7 @@ function EventHandler(db) {
 			if(typeof chamanSvanirEvent === 'string') {
 				chamanSvanirEvent = [chamanSvanirEvent];
 			}
-			var chamanSvanir = {"name" : "chaman_svanir"};
+			var chamanSvanir = {"_id" : "chaman_svanir"};
 			chamanSvanir["time"] = chamanSvanirEvent;
 			userEvents.push(chamanSvanir);
 		}
@@ -99,7 +99,7 @@ function EventHandler(db) {
 			if(typeof ulgothEvent === 'string') {
 				ulgothEvent = [ulgothEvent];
 			}
-			var ulgoth = {"name" : "ulgoth"};
+			var ulgoth = {"_id" : "ulgoth"};
 			ulgoth["time"] = ulgothEvent;
 			userEvents.push(ulgoth);
 		}
@@ -108,7 +108,7 @@ function EventHandler(db) {
 			if(typeof elementalFuegoEvent === 'string') {
 				elementalFuegoEvent = [elementalFuegoEvent];
 			}
-			var elementalFuego = {"name" : "elemental_fuego"};
+			var elementalFuego = {"_id" : "elemental_fuego"};
 			elementalFuego["time"] = elementalFuegoEvent;
 			userEvents.push(elementalFuego);
 		}
@@ -117,7 +117,7 @@ function EventHandler(db) {
 			if(typeof reinaKarkaEvent === 'string') {
 				reinaKarkaEvent = [reinaKarkaEvent];
 			}
-			var reinaKarka = {"name" : "reina_karka"};
+			var reinaKarka = {"_id" : "reina_karka"};
 			reinaKarka["time"] = reinaKarkaEvent;
 			userEvents.push(reinaKarka);
 		}
@@ -126,7 +126,7 @@ function EventHandler(db) {
 			if(typeof golemEvent === 'string') {
 				golemEvent = [golemEvent];
 			}
-			var golem = {"name" : "golem"};
+			var golem = {"_id" : "golem"};
 			golem["time"] = golemEvent;
 			userEvents.push(golem);
 		}
@@ -135,7 +135,7 @@ function EventHandler(db) {
 			if(typeof tequatlEvent === 'string') {
 				tequatlEvent = [tequatlEvent];
 			}
-			var tequatl = {"name" : "tequatl"};
+			var tequatl = {"_id" : "tequatl"};
 			tequatl["time"] = tequatlEvent;
 			userEvents.push(tequatl);
 		}
@@ -144,7 +144,7 @@ function EventHandler(db) {
 			if(typeof garraJormagEvent === 'string') {
 				garraJormagEvent = [garraJormagEvent];
 			}
-			var garraJormag = {"name" : "garra_jormag"};
+			var garraJormag = {"_id" : "garra_jormag"};
 			garraJormag["time"] = garraJormagEvent;
 			userEvents.push(garraJormag);
 		}
@@ -153,7 +153,7 @@ function EventHandler(db) {
 			if(typeof granSierpeEvent === 'string') {
 				granSierpeEvent = [granSierpeEvent];
 			}
-			var granSierpe = {"name" : "gran_sierpe"};
+			var granSierpe = {"_id" : "gran_sierpe"};
 			granSierpe["time"] = granSierpeEvent;
 			userEvents.push(granSierpe);
 		}
@@ -162,7 +162,7 @@ function EventHandler(db) {
 			if(typeof taidhaEvent === 'string') {
 				taidhaEvent = [taidhaEvent];
 			}
-			var taidha = {"name" : "taidha"};
+			var taidha = {"_id" : "taidha"};
 			taidha["time"] = taidhaEvent;
 			userEvents.push(taidha);
 		}
@@ -181,7 +181,6 @@ function EventHandler(db) {
 				return res.redirect('/main');
 			});
 		});
-		
 	};
 	
 	this.updateEvents = function(req, res, next){
@@ -195,128 +194,57 @@ function EventHandler(db) {
 	
 	this.checkEventAlerts = function(req, res, next){
 		var date = new Date();
-		var minutes = date.getMinutes();
-		// Tiempo con antelación 0
-		var timeZero = "";
-		if (minutes.toString().length === "1") {
-			timeZero = date.getHours() + ":0" + minutes;
-		} else {
-			timeZero = date.getHours() + ":" + minutes;
-		}
-		// Tiempo con antelación 5
-		var timeFive = date.getHours() + ":" + (minutes + 5);
-		// Tiempo con antelación 10
-		var timeTen = date.getHours() + ":" + (minutes + 10);
-		
-		// ANTELACIÓN : 0
-		// Obtener evento por hora
-		eventDAO.getEventByTime(timeZero, function(err, event){
-			if (err) {
-				console.log("Error al obtener evento.");
-//				return res.redirect('/error');
+		var dateTemp = new Date();
+//		var minutes = date.getMinutes();
+//		var hours = date.getHours();
+		// Se recuperan los usuarios IMPLEMENTAR
+		userDAO.getUsers(function(errU, users){
+			if (errU) {
+				console.log("Error al obtener todos los usuarios");
 			}
-			if (event !== null) {
-				// Obtener usuarios suscritos al evento
-				userDAO.getUsersByEvent("true", 0, event, function(errU, users){
-					if (errU) {
-						console.log("Error al obtener usuarios.");
-						console.log(errU);
-//					return res.redirect('/error');
+		// Recorrer todos los usuarios suscritos
+			for(var i = 0 ; i < users.length ; i++) {
+				var myuser = users[i];
+				if (myuser['enable_alerts']){
+					// CONTROLA LA SEGUNDA SUMA
+					dateTemp.setMinutes(date.getMinutes());
+					dateTemp.setMinutes(date.getMinutes() + parseInt(myuser['time_alert']));
+					var minutes = dateTemp.getMinutes();
+					var hours = dateTemp.getHours();
+					
+					var userMinutes;
+					if (minutes.toString().length < 2) {
+						userMinutes = "0" + minutes.toString();
+					} else {
+						userMinutes = minutes.toString();
 					}
-					if (users !== null && users.length > 0) {
-						// Recorrer todos los usuarios suscritos
-						for(var i = 0 ; i < users.length ; i++) {
-							var subscribedUser = users[i];
-							// Recorrer todos los eventos del usuario
-							for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
-								var userEvent = subscribedUser.events[iE];
-								// Si el evento coincide y está suscrito a esa hora
-								if (userEvent['name'] === event['_id']) {
-									if(userEvent['time'].indexOf(timeZero) !== -1) {
-										// Enviar email
-										emailSender.sendEmail(subscribedUser, event, timeZero);
-										break;
-									}
+					var userHours;
+					if (hours.toString().length < 2) {
+						userHours = "0" + hours.toString();
+					} else {
+						userHours = hours.toString();
+					}
+					
+					
+					
+					
+					
+					var timeUser = userHours + ":" + userMinutes;
+					// Recorrer todos los eventos del usuario
+					for (var h = 0 ; h < myuser.events.length ; h ++) {
+						var userEvent = myuser.events[h];
+						if(userEvent['time'].indexOf(timeUser) !== -1) {
+							// Enviar email
+							eventDAO.getEventById(userEvent['_id'], function(err, event){
+								if (err) {
+									console.log("Error al obtener evento");
 								}
-							}
+								emailSender.sendEmail(myuser, event, timeUser);
+							});
 						}
-					} 
-				});
-				
+					}
+				}
 			}
-			// ANTELACIÓN : 5
-			// Obtener evento por hora
-			eventDAO.getEventByTime(timeFive, function(err, event){
-				if (err) {
-					console.log("Error al obtener evento.");
-//				return res.redirect('/error');
-				}
-				if (event !== null) {
-					// Obtener usuarios suscritos al evento
-					userDAO.getUsersByEvent(true, 5, event, function(errU, users){
-						if (errU) {
-							console.log("Error al obtener usuarios.");
-							console.log(errU);
-//					return res.redirect('/error');
-						}
-						if (users !== null && users.length > 0) {
-							// Recorrer todos los usuarios suscritos
-							for(var i = 0 ; i < users.length ; i++) {
-								var subscribedUser = users[i];
-								// Recorrer todos los eventos del usuario
-								for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
-									var userEvent = subscribedUser.events[iE];
-									// Si el evento coincide y está suscrito a esa hora
-									if (userEvent['name'] === event['_id']) {
-										if(userEvent['time'].indexOf(timeFive) !== -1) {
-											// Enviar email
-											emailSender.sendEmail(subscribedUser, event, timeFive);
-											break;
-										}
-									}
-								}
-							}
-						} 
-					});
-				}
-				// ANTELACIÓN : 10
-				// Obtener evento por hora
-				eventDAO.getEventByTime(timeTen, function(err, event){
-					if (err) {
-						console.log("Error al obtener evento.");
-//				return res.redirect('/error');
-					}
-					if (event !== null) {
-						// Obtener usuarios suscritos al evento
-						userDAO.getUsersByEvent(true, 10, event, function(errU, users){
-							if (errU) {
-								console.log("Error al obtener usuarios.");
-								console.log(errU);
-//					return res.redirect('/error');
-							}
-							if (users !== null && users.length > 0) {
-								// Recorrer todos los usuarios suscritos
-								for(var i = 0 ; i < users.length ; i++) {
-									var subscribedUser = users[i];
-									// Recorrer todos los eventos del usuario
-									for (var iE = 0 ; iE < subscribedUser.events.length ; iE ++) {
-										var userEvent = subscribedUser.events[iE];
-										// Si el evento coincide y está suscrito a esa hora
-										if (userEvent['name'] === event['_id']) {
-											if(userEvent['time'].indexOf(timeTen) !== -1) {
-												// Enviar email
-												emailSender.sendEmail(subscribedUser, event, timeTen);
-												break;
-											}
-										}
-									}
-								}
-							} 
-						});
-						
-					}
-				});
-			});
 		});
 	};
 }

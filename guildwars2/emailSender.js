@@ -15,12 +15,12 @@ function EmailSender() {
 	
 	this.sendEmail = function(user, event, timeStart) {
 		
-		var	text = "Hola " + user['name'] + ", \n El evento: " + 
+		var	text = "Hola " + user['_id'] + ", \n El evento: " + 
 					event['name'] + ", con punto de ruta: " + event['waypoint'] + 
-					", comenzará a las" + timeStart + ". \n \n ¡Mucha suerte!";
-		var	html = "<p>Hola " + user['name'] + ",</p><p>El evento: " + 
+					", comenzará a las " + timeStart + ". \n \n ¡Mucha suerte!";
+		var	html = "<p>Hola " + user['_id'] + ",</p><p>El evento: " + 
 					event['name'] + ", con punto de ruta: " + event['waypoint'] + 
-					", comenzará a las" + timeStart + ".</p><p>¡Mucha suerte!</p>";
+					", comenzará a las " + timeStart + ".</p><p>¡Mucha suerte!</p>";
 			
 		var mailOptions = {
 				from : "daw2014gw2mailsender@gmail.com",
