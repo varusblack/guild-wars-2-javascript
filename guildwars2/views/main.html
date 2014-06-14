@@ -2,57 +2,71 @@
 
 <html>
 <head>
-<title>Página principal</title>
+<title>Alertas GW2 - Página principal</title>
+	<script src="./js/css.js"></script>
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-	<div class="top_bar">
-		<span class="welcome">Bienvenido {{user['_id']}}</span> 
-		<a class="top_bar_link" href="/profile">Perfil</a>
-		<a class="top_bar_link" href="/logout">Cerrar sesión</a>
-	</div>
-
-	<div class="dynamic_events">
-		<div class="finished_event"></div>
-
-		<div class="current_event"></div>
-
-		<div class="incoming_event"></div>
-	</div>
-
-	<div class="event_list">
-		<form action="/main" method="post">
-			{% for event in events %}
-			<div class="event" id="{{event['_id']}}">
-				<span class="event_title">{{event['name']}}</span> 
-				<span class="event_waypoint">{{event['waypoint']}}</span>
-				<div class="event_times">
-				{% for time in event['time'] %}
-					<div class="event_time">
-						<label for="{{event['_id']}}_{{time}}">{{time}}</label>
-						<input type="checkbox" id="{{event['_id']}}_{{time}}" 
-						name="{{event['_id']}}_time" value="{{time}}"
-						{% for user_event in user['events'] %}
-						{% if (event['_id'] == user_event['_id']) && (time in user_event['time']) %}
-						checked="checked"
-						{% endif %}
-						{% endfor %}
-						>
+	<header>
+		<div class="logo_container">
+			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
+		</div>
+		<div class="welcome_message_container">
+			<span class="welcome">Bienvenido {{user['_id']}}</span>
+		</div>
+		<div class="buttons_container">
+			<a href="/profile">
+				<button id="button_profile" type="button" class="profile_mouseOut" 
+					onmousedown="profileMouseDown()" onmouseover="profileMouseOver()" 
+					onmouseout="profileMouseOut()" onmouseup="profileMouseOver()"></button>
+			</a>
+			<a href="/logout">
+				<button id="button_logout" type="button" class="logout_mouseOut" 
+					onmousedown="logoutMouseDown()" onmouseover="logoutMouseOver()"
+					onmouseout="logoutMouseOut()" onmouseup="logoutMouseOver()"></button>
+			</a>
+		</div>
+	</header>
+	<article>
+		<div class="event_list">
+			<form action="/main" method="post">
+				{% for event in events %}
+				<div class="event" id="{{event['_id']}}">
+					<span class="event_title">{{event['name']}}</span> 
+					<span class="event_waypoint">{{event['waypoint']}}</span>
+					<div class="event_times">
+					{% for time in event['time'] %}
+						<div class="event_time">
+							<label for="{{event['_id']}}_{{time}}">{{time}}</label>
+							<input type="checkbox" id="{{event['_id']}}_{{time}}" 
+							name="{{event['_id']}}_time" value="{{time}}"
+							{% for user_event in user['events'] %}
+							{% if (event['_id'] == user_event['_id']) && (time in user_event['time']) %}
+							checked="checked"
+							{% endif %}
+							{% endfor %}
+							>
 						</div>
+					{% endfor %}
 					</div>
-				{% endfor %}
 				</div>
-			</div>
-			{% endfor %} 
-			<input type="submit" title="Suscribirse">
-		</form>
-	</div>
+				{% endfor %} 
+				<div class="form_submit">
+					<button id="button_save" type="submit" class="save_mouseOut" 
+						onmousedown="saveMouseDown()" onmouseover="saveMouseOver()"
+						onmouseout="saveMouseOut()" onmouseup="saveMouseOver()">
+					</button>
+				</div>
+			</form>
+		</div>
+	</article>
 
-
-</body>
-<footer>
-	<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span> <span>Autor:
-		Álvaro Tristancho</span>
-</footer>
+	</body>
+	<footer> 
+		<img alt="Universidad de Sevilla" src="img/us_logo.png">
+		<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
+		<span>Autor: Álvaro Tristancho</span>
+	</footer>
 
 </html>

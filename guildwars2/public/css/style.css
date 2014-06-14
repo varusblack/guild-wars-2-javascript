@@ -1,0 +1,237 @@
+body {
+  width: 55em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/* Pie de pagina */
+footer {
+	min-height: 7em;
+	margin-top: 2em;
+	border-top: thin;
+	border-top-color: black;
+	background-image: url("/img/footer_background.png") ;
+	background-repeat: repeat-x;
+}
+
+footer img {
+	float : left;
+	height: 100px;
+	width: 100px;
+	padding-left: 0.5em;
+}
+
+footer span {
+	float: right;
+	clear: right;
+	text-align: right;
+	text-shadow: black;
+	font-weight: bold;
+	padding-top: 1em;
+	padding-right: 1em;
+	color: #ee0033;
+}
+
+/* Cabecera */
+header {
+	/*height: 50px;*/
+	min-height: 4em;
+	background-image: url("/img/header_background.png") ;
+	background-repeat: repeat-x;
+}
+
+header a {
+	float:right;
+	padding-right: 1em;
+	padding-top: 0.25em;
+/* 	font-family: fantasy; */
+}
+
+div.logo_container{
+	float : left;
+	padding-left: 0.5em;
+}
+
+div.logo_container {
+	display: inline-block;
+}
+
+div.logo_container a {
+	padding: 0;
+}
+
+div.buttons_container {
+	display:inline-block; 
+	float: right;
+}
+
+div.welcome_message_container {
+	display:inline-block; 
+	padding-top: 1em;
+	padding-left: 2em;
+}
+
+div.welcome_message_container span{
+	padding: 0; 
+	color: "#595959";
+	font-style: italic;
+}
+
+/* Cuerpo */
+article {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+
+div.events {
+	min-height: 10em;
+}
+
+/* Boton de login */
+.login_mouseOver{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_login_mouseover.png");
+}
+
+.login_mouseDown{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_login_mousedown.png");
+}
+
+.login_mouseOut{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_login.png");
+}
+
+/* Boton de logout */
+.logout_mouseOver{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_logout_mouseover.png");
+}
+
+.logout_mouseDown{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_logout_mousedown.png");
+}
+
+.logout_mouseOut{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_logout.png");
+}
+
+/* Boton de registrarse */
+.register_mouseOver{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_registration_mouseover.png");
+}
+
+.register_mouseDown{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_registration_mousedown.png");
+}
+
+.register_mouseOut{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_registration.png");
+}
+
+/* Boton de ver perfil */
+.profile_mouseOver{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_profile_mouseover.png");
+}
+
+.profile_mouseDown{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_profile_mousedown.png");
+}
+
+.profile_mouseOut{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_profile.png");
+}
+
+/* Boton de guardar cambios */
+.save_mouseOver{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_save_mouseover.png");
+}
+
+.save_mouseDown{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_save_mousedown.png");
+}
+
+.save_mouseOut{
+	height: 40px;
+	width: 150px;
+	background-image: url("/img/button_save.png");
+}
+
+/* Pantalla de Login */
+.form_submit {
+	text-align: center;
+	padding-top: 2em;
+	clear: both;
+}
+
+.login_field {
+	padding-top: 1em;
+}
+
+.login_field label {
+	color: "#595959";
+	font-style: italic;
+}
+
+.login_field input {
+	width: 20em;
+}
+
+/* Errores */
+.error{
+	color: red;
+}
+
+/* Página principal */
+.event {
+	clear: both;
+	padding-bottom: 2em;
+	min-height: 6em;
+	min-width: 10em;
+}
+
+.event_list {
+	padding-top: 1em;
+	text-align: center;
+}
+
+.event_title {
+	font-weight: bold;
+	color: #ee0033;
+	padding-bottom: 0.5em;
+}
+.event_waypoint {
+	color: gold;
+}
+.event_time {
+	float: left;
+	padding-right: 1em;
+}

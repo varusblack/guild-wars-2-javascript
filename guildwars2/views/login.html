@@ -2,29 +2,47 @@
 
 <html>
 <head>
-	<title>{{title}}</title>
+	<title>Alertas GW2 - Login</title>
+	<script src="./js/css.js"></script>
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-	<h2>Ingresar</h2>
-	<form action="/login" method="post">
-		<div>
-			<div>
-				<label for="username">Nombre de usuario</label>
-				<input type="text" id="username" name="username" required="required">
-				<span class="error">{{username_error}}</span>
-			</div>
-			<div>
-				<label for="password">Contraseña</label>
-				<input type="password" id="password" name="password" required="required">
-				<span class="error">{{password_error}}</span>
-			</div>
-			<div class="error">
-				<span>{{login_error}}</span>
-			</div>
+	<header>
+		<div class="logo_container">
+			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
 		</div>
-		<input type="submit">
-	</form>
+	</header>
+	<article>
+		<form action="/login" method="post">
+			<div class="login_form_fields" align="center">
+				<div class="login_field">
+					<label for="username">Nombre de usuario</label><br />
+					<input type="text" id="username" name="username" required="required">
+					<span class="error">{{username_error}}</span>
+				</div>
+				<div class="login_field">
+					<label for="password">Contraseña</label><br />
+					<input type="password" id="password" name="password" required="required">
+					<span class="error">{{password_error}}</span>
+				</div>
+				<div class="error">
+					<span>{{login_error}}</span>
+				</div>
+			</div>
+			<div class="form_submit">
+				<button id="button_login" type="submit" class="login_mouseOut" 
+					onmousedown="loginMouseDown()" onmouseover="loginMouseOver()"
+					onmouseout="loginMouseOut()" onmouseup="loginMouseOver()">
+				</button>
+			</div>
+		</form>
+	</article>
+	<footer> 
+		<img alt="Universidad de Sevilla" src="img/us_logo.png">
+		<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
+		<span>Autor: Álvaro Tristancho</span>
+	</footer>
 </body>
 
 </html>
