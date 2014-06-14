@@ -2,32 +2,48 @@
 
 <html>
 <head>
-<title>{{title}}</title>
+<title>Alertas GW2</title>
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/blitzer/jquery-ui.css"> -->
+<link rel="stylesheet" href="./css/style.css">
+<script src="./js/css.js"></script>
 </head>
 
 <body>
-	<div class="top_bar">
-		<span>Hola {{username}}</span> 
-		<a class="top_bar_link" href="/registration">Registrarse</a>
-		<a class="top_bar_link" href="/login">Iniciar sesión</a>
-	</div>
-
-	<div class="events">
-		<div class="finished_event">
+	<header>
+		<div class="logo_container">
+			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
 		</div>
-		
-		<div class="current_event">
+		<div class="buttons_container">
+			<a href="/registration">
+				<button id="button_register" type="button" class="register_mouseOut" 
+					onmousedown="registerMouseDown()" onmouseover="registerMouseOver()" 
+					onmouseout="registerMouseOut()" onmouseup="registerMouseOver()"></button>
+			</a>
+			<a href="/login">
+				<button id="button_login" type="button" class="login_mouseOut" 
+					onmousedown="loginMouseDown()" onmouseover="loginMouseOver()"
+					onmouseout="loginMouseOut()" onmouseup="loginMouseOver()"></button>
+			</a>
 		</div>
-		
-		<div class="incoming_event">
+	</header>
+	<article>
+		<div class="events">
+			<div class="finished_event">
+			</div>
+			
+			<div class="current_event">
+			</div>
+			
+			<div class="incoming_event">
+			</div>
+			
 		</div>
-		
-	</div>
-
+	</article>
+	<footer> 
+		<img alt="Universidad de Sevilla" src="img/us_logo.png">
+		<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
+		<span>Autor: Álvaro Tristancho</span>
+	</footer>
 </body>
-<footer> 
-	<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
-	<span>Autor: Álvaro Tristancho</span>
-</footer>
 
 </html>
