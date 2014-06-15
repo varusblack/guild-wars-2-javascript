@@ -1,9 +1,10 @@
 body {
-  width: 55em;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #FFF;
-  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+	width: 55em;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url("/img/body_background.png");
+	background-repeat: no-repeat;
+	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 /* Pie de pagina */
@@ -12,12 +13,12 @@ footer {
 	margin-top: 2em;
 	border-top: thin;
 	border-top-color: black;
-	background-image: url("/img/footer_background.png") ;
+	background-image: url("/img/footer_background.png");
 	background-repeat: repeat-x;
 }
 
 footer img {
-	float : left;
+	float: left;
 	height: 100px;
 	width: 100px;
 	padding-left: 0.5em;
@@ -36,21 +37,19 @@ footer span {
 
 /* Cabecera */
 header {
-	/*height: 50px;*/
 	min-height: 4em;
-	background-image: url("/img/header_background.png") ;
+	background-image: url("/img/header_background.png");
 	background-repeat: repeat-x;
 }
 
 header a {
-	float:right;
+	float: right;
 	padding-right: 1em;
 	padding-top: 0.25em;
-/* 	font-family: fantasy; */
 }
 
-div.logo_container{
-	float : left;
+div.logo_container {
+	float: left;
 	padding-left: 0.5em;
 }
 
@@ -63,18 +62,18 @@ div.logo_container a {
 }
 
 div.buttons_container {
-	display:inline-block; 
+	display: inline-block;
 	float: right;
 }
 
 div.welcome_message_container {
-	display:inline-block; 
+	display: inline-block;
 	padding-top: 1em;
 	padding-left: 2em;
 }
 
-div.welcome_message_container span{
-	padding: 0; 
+div.welcome_message_container span {
+	padding: 0;
 	color: "#595959";
 	font-style: italic;
 }
@@ -86,101 +85,100 @@ article {
 	text-align: center;
 }
 
-
 div.events {
 	min-height: 10em;
 }
 
 /* Boton de login */
-.login_mouseOver{
+.login_mouseOver {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_login_mouseover.png");
 }
 
-.login_mouseDown{
+.login_mouseDown {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_login_mousedown.png");
 }
 
-.login_mouseOut{
+.login_mouseOut {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_login.png");
 }
 
 /* Boton de logout */
-.logout_mouseOver{
+.logout_mouseOver {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_logout_mouseover.png");
 }
 
-.logout_mouseDown{
+.logout_mouseDown {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_logout_mousedown.png");
 }
 
-.logout_mouseOut{
+.logout_mouseOut {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_logout.png");
 }
 
 /* Boton de registrarse */
-.register_mouseOver{
+.register_mouseOver {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_registration_mouseover.png");
 }
 
-.register_mouseDown{
+.register_mouseDown {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_registration_mousedown.png");
 }
 
-.register_mouseOut{
+.register_mouseOut {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_registration.png");
 }
 
 /* Boton de ver perfil */
-.profile_mouseOver{
+.profile_mouseOver {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_profile_mouseover.png");
 }
 
-.profile_mouseDown{
+.profile_mouseDown {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_profile_mousedown.png");
 }
 
-.profile_mouseOut{
+.profile_mouseOut {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_profile.png");
 }
 
 /* Boton de guardar cambios */
-.save_mouseOver{
+.save_mouseOver {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_save_mouseover.png");
 }
 
-.save_mouseDown{
+.save_mouseDown {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_save_mousedown.png");
 }
 
-.save_mouseOut{
+.save_mouseOut {
 	height: 40px;
 	width: 150px;
 	background-image: url("/img/button_save.png");
@@ -207,7 +205,7 @@ div.events {
 }
 
 /* Errores */
-.error{
+.error {
 	color: red;
 }
 
@@ -234,49 +232,52 @@ div.events {
 	padding-left: 1em;
 	padding-top: 0.4em;
 	float: left;
-/* 	clear: right; */
+	/* 	clear: right; */
 }
+
 .event_waypoint {
 	float: left;
 	color: gold;
 	padding-left: 1em;
 }
+
 .event_time {
 	float: left;
 	padding-right: 1em;
-		color: "#595959";
+	color: "#595959";
 	font-style: italic;
 }
+
 .event_times {
 	float: left;
 	padding-left: 2em;
-	max-width: 35em;
+	max-width: 33em;
 	padding-top: 0.7em;
 }
+
 .event_info {
 	clear: left;
 	float: left;
-	max-width: 16.7em;
+	max-width: 18em;
 	padding-left: 1em;
 }
 
 .event_image {
 	float: left;
 	clear: left;
-	width: 60px;
-	height: 60px;
+	width: 75px;
+	height: 75px;
 }
 
 /* Pantalla de Perfil */
-
 .profile_field {
 	padding-top: 1em;
 }
 
 .profile_field label {
-	clear: both;
-	color: "#595959";
+	clear: both; color : "#595959";
 	font-style: italic;
+	color: "#595959";
 }
 
 .profile_field span {
@@ -296,7 +297,6 @@ div.events {
 }
 
 /* Pantalla de Registro */
-
 .registration_field {
 	padding-top: 1em;
 }
