@@ -29,13 +29,11 @@ module.exports = exports = function(app, db) {
 	app.post('/profile', sessionHandler.handleProfileUpdate);
 	
 	// Página principal
-//	app.get('/main', sessionHandler.displayMainPage);
 	app.get('/main', eventHandler.displayMainPage);
 	app.post('/main',eventHandler.subscribeToEvents);
 	
 	// Errores
 	app.use(ErrorHandler);
-//	app.get('/error', )
 	
 	// Logout
 	app.get('/logout', sessionHandler.displayLogoutPage);

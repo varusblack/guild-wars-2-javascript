@@ -1,5 +1,5 @@
 /**
- * New node file
+ * Manejador de eventos
  */
 var UserDAO = require('../userDAO').UserDAO,
 	EventDAO = require('../eventDAO').EventDAO,
@@ -49,123 +49,6 @@ function EventHandler(db) {
 		var taidhaEvent = req.body.taidha_time;
 		
 		var userEvents = new Array();
-		
-//		if (megadestructorEvent !== undefined) {
-//			if(typeof megadestructorEvent === 'string') {
-//				megadestructorEvent = [megadestructorEvent];
-//			}
-//			var megadestructor = {"_id" : "megadestructor"};
-//			megadestructor["time"] = megadestructorEvent;
-//			userEvents.push(megadestructor);
-//		}
-//		
-//		if (sierpeEvent !== undefined) {
-//			if(typeof sierpeEvent === 'string') {
-//				sierpeEvent = [sierpeEvent];
-//			}
-//			var sierpe = {"_id" : "sierpe"};
-//			sierpe["time"] = sierpeEvent;
-//			userEvents.push(sierpe);
-//		}
-//		
-//		if (behemotEvent !== undefined) {
-//			if(typeof behemotEvent === 'string') {
-//				behemotEvent = [behemotEvent];
-//			}
-//			var behemot = {"_id" : "behemot"};
-//			behemot["time"] = behemotEvent;
-//			userEvents.push(behemot);
-//		}
-//		
-//		if (asoladorEvent !== undefined) {
-//			if(typeof asoladorEvent === 'string') {
-//				asoladorEvent = [asoladorEvent];
-//			}
-//			var asolador = {"_id" : "asolador"};
-//			asolador["time"] = asoladorEvent;
-//			userEvents.push(asolador);
-//		}
-//		
-//		if (chamanSvanirEvent !== undefined) {
-//			if(typeof chamanSvanirEvent === 'string') {
-//				chamanSvanirEvent = [chamanSvanirEvent];
-//			}
-//			var chamanSvanir = {"_id" : "chaman_svanir"};
-//			chamanSvanir["time"] = chamanSvanirEvent;
-//			userEvents.push(chamanSvanir);
-//		}
-//		
-//		if (ulgothEvent !== undefined) {
-//			if(typeof ulgothEvent === 'string') {
-//				ulgothEvent = [ulgothEvent];
-//			}
-//			var ulgoth = {"_id" : "ulgoth"};
-//			ulgoth["time"] = ulgothEvent;
-//			userEvents.push(ulgoth);
-//		}
-//		
-//		if (elementalFuegoEvent !== undefined) {
-//			if(typeof elementalFuegoEvent === 'string') {
-//				elementalFuegoEvent = [elementalFuegoEvent];
-//			}
-//			var elementalFuego = {"_id" : "elemental_fuego"};
-//			elementalFuego["time"] = elementalFuegoEvent;
-//			userEvents.push(elementalFuego);
-//		}
-//		
-//		if (reinaKarkaEvent !== undefined) {
-//			if(typeof reinaKarkaEvent === 'string') {
-//				reinaKarkaEvent = [reinaKarkaEvent];
-//			}
-//			var reinaKarka = {"_id" : "reina_karka"};
-//			reinaKarka["time"] = reinaKarkaEvent;
-//			userEvents.push(reinaKarka);
-//		}
-//		
-//		if (golemEvent !== undefined) {
-//			if(typeof golemEvent === 'string') {
-//				golemEvent = [golemEvent];
-//			}
-//			var golem = {"_id" : "golem"};
-//			golem["time"] = golemEvent;
-//			userEvents.push(golem);
-//		}
-//		
-//		if (tequatlEvent !== undefined) {
-//			if(typeof tequatlEvent === 'string') {
-//				tequatlEvent = [tequatlEvent];
-//			}
-//			var tequatl = {"_id" : "tequatl"};
-//			tequatl["time"] = tequatlEvent;
-//			userEvents.push(tequatl);
-//		}
-//		
-//		if (garraJormagEvent !== undefined) {
-//			if(typeof garraJormagEvent === 'string') {
-//				garraJormagEvent = [garraJormagEvent];
-//			}
-//			var garraJormag = {"_id" : "garra_jormag"};
-//			garraJormag["time"] = garraJormagEvent;
-//			userEvents.push(garraJormag);
-//		}
-//		
-//		if (granSierpeEvent !== undefined) {
-//			if(typeof granSierpeEvent === 'string') {
-//				granSierpeEvent = [granSierpeEvent];
-//			}
-//			var granSierpe = {"_id" : "gran_sierpe"};
-//			granSierpe["time"] = granSierpeEvent;
-//			userEvents.push(granSierpe);
-//		}
-//		
-//		if (taidhaEvent !== undefined) {
-//			if(typeof taidhaEvent === 'string') {
-//				taidhaEvent = [taidhaEvent];
-//			}
-//			var taidha = {"_id" : "taidha"};
-//			taidha["time"] = taidhaEvent;
-//			userEvents.push(taidha);
-//		}
 		
 		eventDAO.getEvents(function(errE, events){
 			if (errE) {
@@ -352,16 +235,6 @@ function EventHandler(db) {
 				return res.redirect('/main');
 			});
 		});
-		
-	};
-	
-	this.updateEvents = function(req, res, next){
-		var date = new Date();
-		var time = date.getHours() + ":" + date.getMinutes();
-		console.log("Evento que saca la hora: " + time);
-		emailSender.testSendEmail();
-//		return res.redirect('/');
-		
 	};
 	
 	this.checkEventAlerts = function(req, res, next){
@@ -376,7 +249,7 @@ function EventHandler(db) {
 			for(var i = 0 ; i < users.length ; i++) {
 				var myuser = users[i];
 				if (myuser['enable_alerts']){
-					// CONTROLA LA SEGUNDA SUMA
+					// Establecer el tiempo
 					dateTemp.setMinutes(date.getMinutes());
 					dateTemp.setMinutes(date.getMinutes() + parseInt(myuser['time_alert']));
 					var minutes = dateTemp.getMinutes();
@@ -409,7 +282,6 @@ function EventHandler(db) {
 			}
 		});
 	};
-	
 }
 
 module.exports = EventHandler;

@@ -31,7 +31,7 @@ MongoClient.connect('mongodb://localhost:27017/mydb', function(err, db) {
 	var EventHandler = require('./routes/eventHandler');
 	var eventHandler = new EventHandler(db);
 	//Cada 5 minutos
-//	new CronJob('00 00,05,10,15,20,25,30,35,40,45,50,55 * * * *', eventHandler.checkEventAlerts,null,true,"Europe/Spain");
+	new CronJob('00 00,05,10,15,20,25,30,35,40,45,50,55 * * * *', eventHandler.checkEventAlerts,null,true,"Europe/Spain");
 
 	app.listen(app.get('port'), function() {
 		console.log('Express server listening on port ' + app.get('port'));

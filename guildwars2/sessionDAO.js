@@ -5,13 +5,6 @@ var crypto = require('crypto');
 
 function SessionDAO(db) {
 	
-//	/* If this constructor is called without the "new" operator, "this" points
-//     * to the global object. Log a warning and call it correctly. */
-//    if (false === (this instanceof SessionsDAO)) {
-//        console.log('Warning: SessionsDAO constructor called without "new" operator');
-//        return new SessionsDAO(db);
-//    }
-	
 	var sessions = db.collection("sessions");
 	
 	this.startSession = function(username, callback) {
@@ -32,11 +25,9 @@ function SessionDAO(db) {
 	};
 	
 	this.endSession = function(session_id, callback) {
-		
 		// Borrado de la sesión
 		sessions.remove({'_id' : session_id}, function(err, numRemoved){
 			callback(err);
-			//no se hace nada con el numRemoved?
 		});
 	};
 	
