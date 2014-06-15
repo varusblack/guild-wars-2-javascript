@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Alertas GW2 - Login</title>
+	<title>GW2 Events - Login</title>
 	<script src="./js/css.js"></script>
 	<link rel="stylesheet" href="./css/style.css">
 </head>
@@ -12,23 +12,28 @@
 		<div class="logo_container">
 			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
 		</div>
+		<div class="buttons_container">
+			<a href="/registration">
+				<button id="button_register" type="button" class="register_mouseOut" 
+					onmousedown="registerMouseDown()" onmouseover="registerMouseOver()" 
+					onmouseout="registerMouseOut()" onmouseup="registerMouseOver()"></button>
+			</a>
+		</div>
 	</header>
 	<article>
 		<form action="/login" method="post">
-			<div class="login_form_fields" align="center">
-				<div class="login_field">
-					<label for="username">Nombre de usuario</label><br />
-					<input type="text" id="username" name="username" required="required">
-					<span class="error">{{username_error}}</span>
-				</div>
-				<div class="login_field">
-					<label for="password">Contraseña</label><br />
-					<input type="password" id="password" name="password" required="required">
-					<span class="error">{{password_error}}</span>
-				</div>
-				<div class="error">
-					<span>{{login_error}}</span>
-				</div>
+			<div class="login_field">
+				<label for="username">Nombre de usuario</label><br />
+				<input type="text" id="username" name="username" required="required">
+				<span class="error">{{username_error}}</span>
+			</div>
+			<div class="login_field">
+				<label for="password">Contraseña</label><br />
+				<input type="password" id="password" name="password" required="required">
+				<span class="error">{{password_error}}</span>
+			</div>
+			<div class="error">
+				<span>{{login_error}}</span>
 			</div>
 			<div class="form_submit">
 				<button id="button_login" type="submit" class="login_mouseOut" 

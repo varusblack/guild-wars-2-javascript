@@ -2,53 +2,72 @@
 
 <html>
 <head>
-	<title>Registrarse</title>
-	<style type="text/css">
-	.error {
-		color: red
-	}
-	</style>
+	<title>GW2 Events - Registrarse</title>
+	<script src="./js/css.js"></script>
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-	¿Eres ya un usuario?
-	<a href="/login">Login</a>
-	<p>
-	<h2>Registrarse</h2>
-	<form method="post">
-		<div>
-			<label for="username">Nombre de usuario</label>
-			<input type="text" id="username" name="username" value="{{username}}" required="required">
-			<span class="error">{{username_error}}</span>
+	<header>
+		<div class="logo_container">
+			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
 		</div>
-			<label for="password">Contraseña</label>
-			<input type="password" id="password" name="password" required="required">
-			<span class="error">{{password_error}}</span>
-		<div>
-			<label for="verify_password">Verificar contraseña</label>
-			<input type="password" id="verify_password" name="verify_password" required="required">
-			<span class="error">{{verify_error}}</span>
+		<div class="buttons_container">
+			<a href="/login">
+				<button id="button_login" type="button" class="login_mouseOut" 
+					onmousedown="loginMouseDown()" onmouseover="loginMouseOver()"
+					onmouseout="loginMouseOut()" onmouseup="loginMouseOver()"></button>
+			</a>
 		</div>
-		<div>
-			<label for="email">Correo electrónico</label>
-			<input type="email" id="email" name="email" value="{{email}}" required="required">
-			<span class="error">{{email_error}}</span>
-		</div>
-		<div>
-			<label for="alert_enabled">¿Activar alertas?</label>
-			<input type="checkbox" id="alert_enabled" name="alert_enabled">
-		</div>		
-		<div>
-			<span>Intervalo de aviso</span>
-			<select id="alert_time" name="alert_time">
-				<option value="0">Al comenzar</option>
-				<option value="5">5</option>
-				<option value="10">10</option>
-			</select>
-		</div>
-
-		<input type="submit">
-	</form>
+	</header>
+	<article>
+		<form method="post">
+			<div class="registration_field">
+				<label for="username">Nombre de usuario</label><br>
+				<input type="text" id="username" name="username" value="{{username}}" required="required">
+				<span class="error">{{username_error}}</span>
+			</div>
+			<div class="registration_field">
+				<label for="password">Contraseña</label><br>
+				<input type="password" id="password" name="password" required="required">
+				<span class="error">{{password_error}}</span>
+			</div>
+			<div class="registration_field">
+				<label for="verify_password">Verificar contraseña</label><br>
+				<input type="password" id="verify_password" name="verify_password" required="required">
+				<span class="error">{{verify_error}}</span>
+			</div>
+			<div class="registration_field">
+				<label for="email">Correo electrónico</label><br>
+				<input type="email" id="email" name="email" value="{{email}}" required="required">
+				<span class="error">{{email_error}}</span>
+			</div>
+			<div class="registration_field">
+				<label for="alert_enabled">¿Activar alertas?</label><br>
+				<input type="checkbox" id="alert_enabled" name="alert_enabled">
+			</div>		
+			<div class="registration_field">
+				<span>Intervalo de aviso</span><br>
+				<select id="alert_time" name="alert_time">
+					<option value="0">Al comenzar</option>
+					<option value="5">5 minutos antes</option>
+					<option value="10">10 minutos antes</option>
+				</select>
+			</div>
+	
+			<div class="form_submit">
+				<button id="button_register" type="submit" class="register_mouseOut" 
+					onmousedown="registerMouseDown()" onmouseover="registerMouseOver()"
+					onmouseout="registerMouseOut()" onmouseup="registerMouseOver()">
+				</button>
+			</div>
+		</form>
+	</article>
+	<footer> 
+		<img alt="Universidad de Sevilla" src="img/us_logo.png">
+		<span>Trabajo de la asignatura Diseño de Aplicaciones Web</span>
+		<span>Autor: Álvaro Tristancho</span>
+	</footer>
 </body>
 
 </html>
