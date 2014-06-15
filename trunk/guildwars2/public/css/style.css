@@ -83,6 +83,7 @@ div.welcome_message_container span{
 article {
 	padding-top: 1em;
 	padding-bottom: 1em;
+	text-align: center;
 }
 
 
@@ -214,8 +215,11 @@ div.events {
 .event {
 	clear: both;
 	padding-bottom: 2em;
-	min-height: 6em;
+	padding-top: 1em;
+	height: 4em;
 	min-width: 10em;
+	background-image: url("/img/event_background.png");
+	background-repeat: repeat-x;
 }
 
 .event_list {
@@ -227,11 +231,94 @@ div.events {
 	font-weight: bold;
 	color: #ee0033;
 	padding-bottom: 0.5em;
+	padding-left: 1em;
+	padding-top: 0.4em;
+	float: left;
+/* 	clear: right; */
 }
 .event_waypoint {
+	float: left;
 	color: gold;
+	padding-left: 1em;
 }
 .event_time {
 	float: left;
 	padding-right: 1em;
+		color: "#595959";
+	font-style: italic;
+}
+.event_times {
+	float: left;
+	padding-left: 2em;
+	max-width: 35em;
+	padding-top: 0.7em;
+}
+.event_info {
+	clear: left;
+	float: left;
+	max-width: 16.7em;
+	padding-left: 1em;
+}
+
+.event_image {
+	float: left;
+	clear: left;
+	width: 60px;
+	height: 60px;
+}
+
+/* Pantalla de Perfil */
+
+.profile_field {
+	padding-top: 1em;
+}
+
+.profile_field label {
+	clear: both;
+	color: "#595959";
+	font-style: italic;
+}
+
+.profile_field span {
+	clear: both;
+	color: "#595959";
+	font-style: italic;
+}
+
+.profile_field input {
+	width: 20em;
+	clear: both;
+}
+
+.profile_field select {
+	width: 20em;
+	clear: both;
+}
+
+/* Pantalla de Registro */
+
+.registration_field {
+	padding-top: 1em;
+}
+
+.registration_field label {
+	clear: both;
+	color: "#595959";
+	font-style: italic;
+}
+
+.registration_field span {
+	clear: both;
+	color: "#595959";
+	font-style: italic;
+}
+
+.registration_field input {
+	width: 20em;
+	clear: both;
+}
+
+.registration_field select {
+	width: 20em;
+	clear: both;
 }

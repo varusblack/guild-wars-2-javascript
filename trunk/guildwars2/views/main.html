@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Alertas GW2 - Página principal</title>
+<title>GW2 Events - Página principal</title>
 	<script src="./js/css.js"></script>
 	<link rel="stylesheet" href="./css/style.css">
 </head>
@@ -10,7 +10,7 @@
 <body>
 	<header>
 		<div class="logo_container">
-			<a href="/"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
+			<a href="/main"><img alt="Guild Wars 2 Events" src="img/logo.png"></a>
 		</div>
 		<div class="welcome_message_container">
 			<span class="welcome">Bienvenido {{user['_id']}}</span>
@@ -33,8 +33,11 @@
 			<form action="/main" method="post">
 				{% for event in events %}
 				<div class="event" id="{{event['_id']}}">
-					<span class="event_title">{{event['name']}}</span> 
-					<span class="event_waypoint">{{event['waypoint']}}</span>
+					<div class="event_info">
+						<img class="event_image" alt="{{event['name']}}" src="img/{{event['_id']}}.png">
+						<span class="event_title">{{event['name']}}</span> 
+						<span class="event_waypoint">{{event['waypoint']}}</span>
+					</div>
 					<div class="event_times">
 					{% for time in event['time'] %}
 						<div class="event_time">
