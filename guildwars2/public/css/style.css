@@ -32,7 +32,7 @@ footer span {
 	font-weight: bold;
 	padding-top: 1em;
 	padding-right: 1em;
-	color: #ee0033;
+	color: #000033;
 }
 
 /* Cabecera */
@@ -227,25 +227,26 @@ div.events {
 
 .event_title {
 	font-weight: bold;
-	color: #ee0033;
 	padding-bottom: 0.5em;
 	padding-left: 1em;
 	padding-top: 0.4em;
 	float: left;
-	/* 	clear: right; */
+	text-shadow: 2px 2px #cccccc;
 }
 
 .event_waypoint {
 	float: left;
-	color: gold;
+	color: #ffdd00;
 	padding-left: 1em;
+	text-shadow: 1px 2px #444;
 }
 
 .event_time {
 	float: left;
 	padding-right: 1em;
-	color: "#595959";
+	color: #000099;
 	font-style: italic;
+	font-weight: bold;
 }
 
 .event_times {
