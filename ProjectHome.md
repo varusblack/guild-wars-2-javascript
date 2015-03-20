@@ -1,0 +1,1 @@
+Proyecto sobre Guild Wars 2 para la asignatura Desarrollo de Aplicaciones Web
